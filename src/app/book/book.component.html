@@ -1,0 +1,18 @@
+  <ion-content>
+      <ion-img class="book" src="{{movie.image_url}}">
+          <ion-icon name="arrow-back" (click)="goBack()"></ion-icon>
+      </ion-img><br>
+      <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input [(ngModel)]="movie.name" readonly></ion-input>
+      </ion-item><br>
+      <ion-item>
+          <ion-label position="floating">No. Of Tickets</ion-label>
+          <ion-input [(ngModel)]="data.tickets"></ion-input>
+      </ion-item><br>
+      <ion-button color="success" (click)="addBooking(movie,data.tickets)">Book Ticket</ion-button>
+  </ion-content>
+  
+  <!-- customer_id":2,"tickets":3,"movie_id":2,"movie_name":"Aquaman","movie_time":"12:50","theatre":"Cinepolis","screen":"Screen 2","city":"Bangalore","movie_date":"2019-05-07T18:30:00.000Z","date":"2019-06-07T18:30:00.000Z","amount":100,"ticket_price":50 -->
+  <!-- {"id":1,"name":"Bahu bali 2","year":2017,"image_url":"https://images-na.ssl-images-amazon.com/images/I/71q6iQTY-VL._SX466_.jpg","production_house":"ABC Movies","rating":5,"type":"epic","language":"Telugu","date":"2017-09-30T18:30:00.000Z"} -->
+  
