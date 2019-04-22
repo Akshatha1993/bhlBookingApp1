@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { BookComponent } from './book/book.component';
-
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'forgotpassword',
     component: ForgotpasswordComponent
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent
   },
   
 ];

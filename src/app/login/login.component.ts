@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { MovieService } from '../movie.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +10,28 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  customer={name:'', email:'', phone:'', password:'', address:''}
+  customers=[];
 userName:any;
 password:any;
-  constructor(private router : Router, public alertController: AlertController) { }
-
-  ngOnInit() {}
-  login(){
-    this.router.navigate(['/tabs/tab1']);
-
-    // if(this.userName === this.password){
-    //   this.router.navigate(['']);
-    //   this.userName = []
-    //   this.password = []
-    // }else{
-    //   this.presentAlert()
-    //   this.userName = []
-    //   this.password = []
-    // }
+  constructor(private route:ActivatedRoute, private router : Router, public alertController: AlertController, private movieService: MovieService) { }
+  ngOnInit() {
+    this.movieService.getRemoteCustomers().subscribe((result) => {this.customers = result;});
+  }
+  login(customer){
+    console.log(customer.phone);
+    for(var i = 0; i< this.customers.length; i++){
+      if((this.customers[i].phone === customer.phone) && (this.customers[i].password=== customer.password)){
+        console.log('logged in');
+        this.router.navigate(['/tabs/tab1']);
+      }else if((this.customers[i].phone === customer.phone) && (this.customers[i].password != customer.password)){
+        this.router.navigate(['/forgotpassword']);
+      }else{ 
+        this.router.navigate(['/signup']);
+        //this.presentAlert();
+      }
+    }
+    //this.presentAlert();
   }
   async presentAlert() {
     const alert = await this.alertController.create({

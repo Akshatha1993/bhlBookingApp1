@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { MovieService } from '../movie.service';
+declare var RazorpayCheckout:any;
 
 @Component({
   selector: 'app-book',
@@ -31,6 +32,16 @@ export class BookComponent implements OnInit {
     ticket_price:0
   };
   ngOnInit() {
+    this.movie = {
+      name:'',
+      year:'',
+      image_url:'',
+      production_house:'',
+      rating:'',
+      type:'',
+      language:'',
+      date:''
+    }
     this.sub = this.route.params.subscribe(params => {
     this.id = +params['id']; // (+) converts string 'id' to a number
        console.log("id is "+this.id);
@@ -41,7 +52,7 @@ export class BookComponent implements OnInit {
     });
   }
   amount=this.data.tickets*50
-  addBooking(movie,t){
+  addBooking(movie, t){
     console.log(movie,t);
     this.movies={
     customer_id:2,
@@ -62,6 +73,37 @@ export class BookComponent implements OnInit {
     this.router.navigate(['/payment'])
     });
     
+    // var options = {
+    //   description: 'Credits towards consultation',
+    //   image: 'http://www.techprocess.co.in/images/paynimo-thumb.png',
+    //   currency: 'INR',
+    //   key: 'rzp_test_ZIpia1muENjWvU',
+    //   // order_id: 'order_7HtFNLS98dSj8x',
+    //   amount: '500000',
+    //   name: 'Payment',
+    //   prefill: {
+    //     email: 'akshatha@gmail.com',
+    //     contact: '8879524924',
+    //     name: 'Akshatha'
+    //   },
+    //   theme: {
+    //     color: '#F37254'
+    //   }
+    // }
+    
+    // var successCallback = function(success) {
+    //   alert('payment_id: ' + success.razorpay_payment_id)
+    //   var orderId = success.razorpay_order_id
+    //   var signature = success.razorpay_signature
+    // }
+    
+    // var cancelCallback = function(error) {
+    //   alert(error.description + ' (Error '+error.code+')')
+    // }
+    
+    // RazorpayCheckout.on('payment.success', successCallback)
+    // RazorpayCheckout.on('payment.cancel', cancelCallback)
+    // RazorpayCheckout.open(options)
   }
   goBack(){
     this.router.navigate(['/tabs/tab1']);

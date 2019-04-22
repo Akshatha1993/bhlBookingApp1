@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,11 +8,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-
-  constructor(private router : Router) { }
+customer={name:'', email:'', phone:'', address:'', password:''};
+  constructor(private router : Router, private movieService: MovieService) { }
 
   ngOnInit() {}
   login(){
     this.router.navigate(['/login']);
   }
+  signUp(){
+  this.movieService.addCustomers(this.customer).subscribe(()=>{
+    this.router.navigate(['/tabs/tab1']);
+  });
+}
 }

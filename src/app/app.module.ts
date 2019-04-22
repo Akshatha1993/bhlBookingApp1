@@ -12,12 +12,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { BookComponent } from './book/book.component';
+import { PaymentComponent } from './payment/payment.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, SignupComponent, 
-    ForgotpasswordComponent, BookComponent],
+    ForgotpasswordComponent, BookComponent, PaymentComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    Camera,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })
